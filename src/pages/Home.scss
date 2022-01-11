@@ -1,0 +1,33 @@
+.Home {
+    background: #eee;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        input {
+            width: 70%;
+            height: 48px;
+            background: #eee;
+            border: 2px solid #37BF9D;
+            transition-duration: 80ms;
+            color: #1f1f1f;
+            border-radius: 4px;
+            padding-left: 8px;
+            margin-bottom: 16px;
+            &:focus {
+                box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.123);
+                outline: none;
+            }
+
+        }
+        .제목 {
+            color: #1f1f1f;
+            font-family: "SANJUGotgam";
+            font-size: 60px;
+            margin-top: 200px;
+            margin-bottom: 120px;
+        }
+    }
+}

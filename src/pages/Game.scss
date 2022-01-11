@@ -1,0 +1,75 @@
+.Game {
+    background: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div {
+        margin-bottom: 100px;
+    }
+    #startTimer {
+        display: flex;
+        font-size: 100px;
+        margin: 100px;
+        color: #000;
+    }
+    #game {
+        background: #eee;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        #clicker {
+            display: flex;
+            background: rgb(234, 235, 189);
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            justify-content: center;
+            line-height: 100px;
+            color: #000;
+            box-shadow: 0 8px 12px rgba(51, 51, 51, 0.37);
+            transition-duration: 40ms;
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+        p {
+            position: relative;
+            color: #262626;
+            font-size: 100px;
+        }
+        #share {
+            display: none;
+            background: rgb(125, 220, 233);
+            position: relative;
+            width: 240px;
+            height: 100px;
+            border-radius: 10px;
+            justify-content: center;
+            line-height: 100px;
+            color: #000;
+            box-shadow: 0 8px 12px rgba(51, 51, 51, 0.37);
+            transition-duration: 40ms;
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+        #re {
+            display: none;
+            background: rgb(125, 220, 233);
+            position: relative;
+            width: 240px;
+            height: 100px;
+            border-radius: 10px;
+            justify-content: center;
+            line-height: 100px;
+            color: #000;
+            box-shadow: 0 8px 12px rgba(51, 51, 51, 0.37);
+            transition-duration: 40ms;
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+    }
+}
