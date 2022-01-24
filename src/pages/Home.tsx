@@ -10,7 +10,7 @@ const Home: React.FC<RouteComponentProps> = ({ history }) => {
       <div className='제목'>떡국 먹-기</div>
       <input placeholder="아이디"></input>
       <input placeholder="비밀번호"></input>
-      <IonButton onClick={() => { history.push('/Game') }}>으아아아아아악</IonButton>
+      <IonButton onClick={() => { history.push('/game') }}>으아아아아아악</IonButton>
       </div>
     </IonPage>
   );

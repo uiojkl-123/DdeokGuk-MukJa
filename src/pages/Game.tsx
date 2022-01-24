@@ -1,8 +1,9 @@
 import { IonPage } from "@ionic/react";
 import React, { useEffect, useRef, useState } from "react";
+import { RouteComponentProps } from "react-router";
 import "./Game.scss"
 
-const Game: React.FC = () => {
+const Game: React.FC<RouteComponentProps> = ({ history }) => {
 
     var stateTime = 7;
 
@@ -15,6 +16,7 @@ const Game: React.FC = () => {
 
         document.getElementById('share')!.style.display = 'flex';
         document.getElementById('re')!.style.display = 'flex';
+        setTimeout(() => { history.push("/game") }, 1000)
     }
 
     const time: any = useRef(stateTime);
