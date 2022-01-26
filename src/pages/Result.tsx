@@ -5,7 +5,7 @@ import { RouteComponentProps } from "react-router";
 const Result: React.FC<RouteComponentProps> = ({ history }) => {
     return (
         <IonPage>
-            
+            <h1>범기바보</h1>
         </IonPage>
     )
 }

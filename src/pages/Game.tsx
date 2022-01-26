@@ -2,8 +2,13 @@ import { IonPage } from "@ionic/react";
 import React, { useEffect, useRef, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import "./Game.scss"
+import { useLocation } from "react-router";
 
 const Game: React.FC<RouteComponentProps> = ({ history }) => {
+
+    const location:any = useLocation();
+
+    const name = location.state.name;
 
     var stateTime = 7;
 
@@ -16,7 +21,12 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
 
         document.getElementById('share')!.style.display = 'flex';
         document.getElementById('re')!.style.display = 'flex';
-        setTimeout(() => { history.push("/game") }, 1000)
+        setTimeout(() => { 
+            history.push({
+                pathname: "/result",
+                // state: 
+            }) 
+        }, 1000)
     }
 
     const time: any = useRef(stateTime);
@@ -62,6 +72,7 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
     return (
         <IonPage className="Game">
             <h1 id="startTimer">{sec - 4}</h1>
+            <h1>{name}</h1>
             <div id="game">
                 <p>{count}</p>
                 <div id="clicker" onClick={() => setCount(count + 1)}>

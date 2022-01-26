@@ -34,7 +34,6 @@ const App: React.FC = () => (
         <Route exact component={Home} path="/home"/>
         <Route exact component={Game} path="/game"/>
         <Route exact component={Result} path="/result"/>
-
         <Route exact path="/"><Redirect to="/home" /></Route>
       </IonRouterOutlet>
     </IonReactRouter>
