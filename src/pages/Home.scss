@@ -14,7 +14,7 @@
             text-align: center;
         }
         .작은제목 {
-            color: #000;
+            color: #3a3a3a;
             font-family: "SDMiSaeng";
             font-size: 2rem;
         }
@@ -39,7 +39,7 @@
                 background: transparent;
                 font-family: "SDMiSaeng";
                 border: none;
-                color: #1f1f1f;
+                color: #3a3a3a;
                 padding-left: 2rem;
                 &:focus {
                     outline: none;
@@ -67,7 +67,7 @@
                 background: transparent;
                 font-family: "SDMiSaeng";
                 border: none;
-                color: #1f1f1f;
+                color: #3a3a3a;
                 padding-left: 5rem;
                 &:focus {
                     outline: none;
@@ -76,6 +76,13 @@
             img {
                 width: 100%;
                 position: absolute;
+            }
+            &:active{
+                transform: translateY(5px);
+                filter: opacity(60%);
+                img {   
+                    filter: opacity(60%);
+                }
             }
         }
     }

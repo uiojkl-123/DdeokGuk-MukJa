@@ -1,0 +1,27 @@
+.DgCon {
+    position: absolute;
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    animation-duration: 5s;
+    animation-name: goDown;
+    animation-fill-mode: forwards;
+    transition-duration: 0.2s;
+    &:active {
+        animation-play-state: paused;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    @keyframes goDown {
+        from {
+            margin-top: -5rem;
+        }
+
+        to {
+            margin-top: 100vh
+        }
+    }
+}

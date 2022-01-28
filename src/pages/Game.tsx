@@ -13,29 +13,31 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
     const name = location.state.name;
 
     //전체 시간 설정
-    var stateTime = 7;
+    var stateTime = 10;
 
 
     const [sec, setSec] = useState(stateTime + 1);
 
-    //떡국 먹은 횟수 - 제거 예정
-    const [count, setCount] = useState(0);
-
     //떡국 사전
-    const [DgDict, setDgDict] = useState({});
+    const [DgDict, setDgDict] = useState({
+        BasicDg: 0,
+        GoldDg: 0,
+        SpecialDg: 0,
+        ChocoDg: 0,
+        PoisonDg: 0,
+        EmeraldDg: 0,
+        DiamondDg: 0,
+        GinsengDg: 0,
+        CaviarDg: 0
+    });
 
     //결과 페이지로 넘어가기
-    function disapear(id: string) {
-        var go = document.getElementById(id)
-        go!.style.display = "none";
-
-        document.getElementById('share')!.style.display = 'flex';
-        document.getElementById('re')!.style.display = 'flex';
+    async function goResult() {
         setTimeout(() => {
             history.push({
                 pathname: "/result",
                 state: { DgDict: DgDict, name: name } //떡국 사전, 사용자 이름 넘겨주기
-            })
+            });
         }, 1000)
     }
 
@@ -62,50 +64,74 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
     }, [sec]);
 
     //시간 마다 뭐할지.
-    if (sec == 4) {
-        document.getElementById('game')!.style.display = 'flex';
-        document.getElementById('startTimer')!.style.display = 'none';
-    }
+    // if (sec == 10) {
+    //     document.getElementById('game')!.style.display = 'flex';
+    //     document.getElementById('startTimer')!.style.display = 'none';
+    // }
 
-    if (sec == 1) {
-        disapear('clicker')
-    }
-
+    // if (sec == 1) {
+    //     goResult()
+    // }
     //타이머 끝
 
-    //공유
-    function twitter() {
-        var sendText = "떡국게임"; // 전달할 텍스트
-        var sendUrl = "localhost"; // 전달할 URL
-        window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+    function makeDg(getDgNum: number) {
+        var DgRandom = Math.random()
+        DgRandom.toFixed(3)
+
+        var DgKind = "BasicDg";
+        var DgScore = 1;
+
+        if (0 <= DgRandom && DgRandom < 68.5) {
+            DgKind = "BasicDg"
+            DgScore = 1
+        } else if (68.5 <= DgRandom && DgRandom < 78.5) {
+            DgKind = "GoldDg"
+            DgScore = 5
+        } else if (78.5 <= DgRandom && DgRandom < 86.5) {
+            DgKind = "SpecialDg"
+            DgScore = 5
+        } else if (86.5 <= DgRandom && DgRandom < 89.5) {
+            DgKind = "ChocoDg"
+            DgScore = 2
+        } else if (89.5 <= DgRandom && DgRandom < 92.5) {
+            DgKind = "PoisonDg"
+            DgScore = -1
+        } else if (92.5 <= DgRandom && DgRandom < 95.5) {
+            DgKind = "EmeraldDg"
+            DgScore = 30
+        } else if (95.5 <= DgRandom && DgRandom < 98.5) {
+            DgKind = "DiamondDg"
+            DgScore = 50
+            
+        } else if (98.5 <= DgRandom && DgRandom < 99.5) {
+            DgKind = "GinsengDg"
+            DgScore = 50
+        } else if (99.5 <= DgRandom && DgRandom <= 100) {
+            DgKind = "CaviarDg"
+            DgScore = 500
+        }
+
+        console.log(DgScore, DgKind, DgDict)
+
+
+        return <Dg DgDict={DgDict} setDgDict={setDgDict} kind={DgKind} score={DgScore} DgNum={getDgNum}></Dg>
     }
 
-    function facebook() {
-        var sendUrl = "localhost"; // 전달할 URL
-        window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+    function setDgLocation(DgNum: number) {
+        var Xrandom = Math.random()
+        Xrandom = Xrandom * 100
+
+        document.getElementById('DgContainer ' + DgNum.toString)!.style.display = 'flex';
+        document.getElementById('DgContainer ' + DgNum.toString)!.style.position = 'absolute';
+        document.getElementById('DgContainer ' + DgNum.toString)!.style.left = Xrandom.toString() + "%";
     }
 
+    var DgNum = 1;
     return (
         <IonPage className="Game">
             <h1 id="startTimer">{sec - 4}</h1>
             <h1>{name}</h1>
-            <div id="game">
-                <p>{count}</p>
-                <div id="clicker" onClick={() => setCount(count + 1)}>
-                    떡국이야
-                </div> {/* 없어질 예정 */}
-                <Dg DgDict={DgDict} setDgDict={setDgDict} kind="BasicDg"></Dg>
-
-                {
-                    Math.random()
-                }
-                <div id="share" onClick={twitter}>트위터</div>
-                <div id="share" onClick={facebook}>페이스북</div>
-                <div id='re' onClick={() => {
-                    setDgDict({})
-                    window.location.reload()
-                }}>다시하기</div>
-            </div>
+            {makeDg(DgNum)}
         </IonPage>
     )
 }

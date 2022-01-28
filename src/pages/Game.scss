@@ -3,9 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    div {
-        margin-bottom: 100px;
-    }
     #startTimer {
         display: flex;
         font-size: 100px;
@@ -14,7 +11,7 @@
     }
     #game {
         background: #eee;
-        display: none;
+        display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;

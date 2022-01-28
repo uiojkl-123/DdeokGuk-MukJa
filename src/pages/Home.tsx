@@ -25,9 +25,9 @@ const Home: React.FC<RouteComponentProps> = ({ history }) => {
         <div className='떡국'>떡국자리</div>
         <div className='nameInput'>
           <img src='/assets/떡국 입력.svg'/>
-          <input placeholder="닉네임을 입력해주세요" id="name"></input>
+          <input spellCheck="false" type="text" placeholder="닉네임을 입력해주세요" id="name"></input>
         </div>
-        <div className='goButton' onClick={goGame} >
+        <div className='goButton' onMouseUp={goGame} >
           <img src='/assets/떡국 시작.svg'/>
           <p>떡국 먹으러 가기</p>
         </div>
