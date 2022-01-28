@@ -79,42 +79,31 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         DgRandom.toFixed(3)
 
         var DgKind = "BasicDg";
-        var DgScore = 1;
 
         if (0 <= DgRandom && DgRandom < 68.5) {
             DgKind = "BasicDg"
-            DgScore = 1
         } else if (68.5 <= DgRandom && DgRandom < 78.5) {
             DgKind = "GoldDg"
-            DgScore = 5
         } else if (78.5 <= DgRandom && DgRandom < 86.5) {
             DgKind = "SpecialDg"
-            DgScore = 5
         } else if (86.5 <= DgRandom && DgRandom < 89.5) {
             DgKind = "ChocoDg"
-            DgScore = 2
         } else if (89.5 <= DgRandom && DgRandom < 92.5) {
             DgKind = "PoisonDg"
-            DgScore = -1
         } else if (92.5 <= DgRandom && DgRandom < 95.5) {
             DgKind = "EmeraldDg"
-            DgScore = 30
         } else if (95.5 <= DgRandom && DgRandom < 98.5) {
             DgKind = "DiamondDg"
-            DgScore = 50
-            
         } else if (98.5 <= DgRandom && DgRandom < 99.5) {
             DgKind = "GinsengDg"
-            DgScore = 50
         } else if (99.5 <= DgRandom && DgRandom <= 100) {
             DgKind = "CaviarDg"
-            DgScore = 500
         }
 
-        console.log(DgScore, DgKind, DgDict)
+        console.log(DgKind, DgDict)
 
 
-        return <Dg DgDict={DgDict} setDgDict={setDgDict} kind={DgKind} score={DgScore} DgNum={getDgNum}></Dg>
+        return <Dg DgDict={DgDict} setDgDict={setDgDict} kind={DgKind} DgNum={getDgNum}></Dg>
     }
 
     function setDgLocation(DgNum: number) {
