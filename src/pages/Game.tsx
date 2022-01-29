@@ -8,16 +8,27 @@ import Dg from "../components/Dg";
 
 const Game: React.FC<RouteComponentProps> = ({ history }) => {
 
+
+    const stateTime = 48;
+
     //history.push로 준 변수 받아오기
     const location: any = useLocation();
     const name = location.state.name;
 
-    //전체 시간 설정
-    var stateTime = 48;
 
-    const [sec, setSec] = useState(stateTime);
+    var DgArray: string[] = []
+    const DgArrayLength = 10
 
-    var DgArray:string[] = []
+    const [DgArrayState, setDgArrayState] = useState<string[]>([]);
+
+    useEffect(() => {
+        for (var i = 1; i <= DgArrayLength; i++) {
+            DgArray.push(RandomKind())
+            console.log(DgArray)
+        }
+        setDgArrayState(DgArray)
+    }, [])
+
 
 
     //떡국 사전
@@ -40,10 +51,13 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
                 pathname: "/result",
                 state: { DgDict: DgDict, name: name } //떡국 사전, 사용자 이름 넘겨주기
             });
-        }, 1000)
+        }, 125)
     }
 
     //타이머 
+
+    const [sec, setSec] = useState(stateTime);
+
     const time: any = useRef(stateTime);
     const timerId: any = useRef('startTimer');
 
@@ -52,8 +66,6 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
             setSec(time.current);
             time.current -= 1;
             console.log(time.current)
-            DgArray = DgArray.concat(RandomKind())
-            console.log(DgArray)
         }, 1000);
 
         return () => clearInterval(timerId.current);
@@ -82,8 +94,6 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         var DgRandom: number = Math.random()
         DgRandom = Number(DgRandom.toFixed(3)) * 100
 
-        console.log(DgRandom)
-
         let DgKind = "BasicDg";
 
         if (0 <= DgRandom && DgRandom < 80.5) {
@@ -105,7 +115,6 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         } else if (99.5 <= DgRandom && DgRandom <= 100) {
             DgKind = "CaviarDg"
         }
-
         return DgKind
     }
 
@@ -115,18 +124,13 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         document.getElementById('DgContainer ' + DgNum.toString)!.style.left = Xrandom.toString() + "%";
     }
 
-    const array = ['BasicDg','ChocoDg']
-
-    if (DgArray) {
-        return (
-            <IonPage className="Game">
-                <h1 id="startTimer">{Number((sec / 10).toFixed(0))}</h1>
-                <h1>{name}</h1>
-                { array.map((value, idx) => <Dg kind={value} DgDict={DgDict} setDgDict={setDgDict} DgNum={idx + 1}></Dg>)}
-            </IonPage >
-        )
-    } else {
-        return <h1>바보</h1>
-    }
+    return (
+        <div className="Game">
+            <h1 id="startTimer">{Number((sec).toFixed(0))}</h1>
+            <h1>{name}</h1>
+            {DgArrayState.map((value, idx) => <Dg key={value + idx} kind={value} DgDict={DgDict} setDgDict={setDgDict} DgNum={idx}></Dg>)}
+        </div >
+    )
 }
+
 export default Game

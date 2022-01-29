@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Dg.scss"
 interface Props {
     kind: string,
@@ -8,7 +8,18 @@ interface Props {
     DgNum: number
 }
 
-const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum }) => {
+const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum}) => {
+
+
+    const [isShown, setIsShown] = useState(false);
+
+    const waitBeforeShow = DgNum * 125
+
+    useEffect(() => {
+        setTimeout(() => {
+          setIsShown(true);
+        }, waitBeforeShow);
+      }, [waitBeforeShow]);
 
     function DgClick() {
         document.getElementById('DgContainer ' + DgNum)!.style.display = "none";
@@ -70,13 +81,12 @@ const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum }) => {
         }
     }
 
-    console.log(kind, DgNum, DgDict)
-    
-    return (
+    return (isShown ? 
         <div id={'DgContainer ' + DgNum} className="DgCon" onClick={DgClick} >
             <img src={"/assets/" + kind + ".png"} />
-        </div>
+        </div>: null
     )
+
 }
 
 

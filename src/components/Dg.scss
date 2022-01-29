@@ -6,6 +6,7 @@
     animation-duration: 5s;
     animation-name: goDown;
     animation-fill-mode: forwards;
+    animation-timing-function: linear;
     transition-duration: 0.2s;
     &:active {
         animation-play-state: paused;
@@ -24,4 +25,7 @@
             margin-top: 100vh
         }
     }
+}
+.hidden {
+	display: none;
 }

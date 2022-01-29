@@ -14,6 +14,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "create-react-class": "^15.7.0",
     "css": "^3.0.0",
     "css-loader": "^6.5.1",
     "firebase": "^9.6.2",
