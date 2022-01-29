@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Dg.scss"
 interface Props {
     kind: string,
@@ -8,7 +8,7 @@ interface Props {
     DgNum: number
 }
 
-export const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum }) => {
+const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum }) => {
 
     function DgClick() {
         document.getElementById('DgContainer ' + DgNum)!.style.display = "none";
@@ -70,9 +70,14 @@ export const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum }) => {
         }
     }
 
+    console.log(kind, DgNum, DgDict)
+    
     return (
         <div id={'DgContainer ' + DgNum} className="DgCon" onClick={DgClick} >
             <img src={"/assets/" + kind + ".png"} />
         </div>
     )
 }
+
+
+export default Dg
