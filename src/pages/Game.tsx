@@ -9,22 +9,20 @@ import Dg from "../components/Dg";
 const Game: React.FC<RouteComponentProps> = ({ history }) => {
 
 
-    const stateTime = 48;
+    const stateTime = 10;
 
     //history.push로 준 변수 받아오기
     const location: any = useLocation();
     const name = location.state.name;
 
-
     var DgArray: string[] = []
-    const DgArrayLength = 10
+    const DgArrayLength = (stateTime) * 8
 
     const [DgArrayState, setDgArrayState] = useState<string[]>([]);
 
     useEffect(() => {
         for (var i = 1; i <= DgArrayLength; i++) {
             DgArray.push(RandomKind())
-            console.log(DgArray)
         }
         setDgArrayState(DgArray)
     }, [])
@@ -35,13 +33,13 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
     const [DgDict, setDgDict] = useState({
         BasicDg: 0,
         GoldDg: 0,
-        SpecialDg: 0,
+        TangerineDg: 0,
         ChocoDg: 0,
         PoisonDg: 0,
-        EmeraldDg: 0,
+        RainbowDg: 0,
         DiamondDg: 0,
         GinsengDg: 0,
-        CaviarDg: 0
+        IceDg: 0
     });
 
     //결과 페이지로 넘어가기
@@ -65,7 +63,6 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         timerId.current = setInterval(() => {
             setSec(time.current);
             time.current -= 1;
-            console.log(time.current)
         }, 1000);
 
         return () => clearInterval(timerId.current);
@@ -79,15 +76,11 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         }
     }, [sec]);
 
-    //조건 시간에 뭐할지.
-    // if (sec == 10) {
-    //     document.getElementById('game')!.style.display = 'flex';
-    //     document.getElementById('startTimer')!.style.display = 'none';
-    // }
 
-    // if (sec == 1) {
-    //     goResult()
-    // }
+    if (sec == 1) {
+        document.getElementById('startTimer')!.innerText = '끝!';
+        goResult()
+    }
     //타이머 끝
 
     function RandomKind() {
@@ -99,35 +92,28 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         if (0 <= DgRandom && DgRandom < 80.5) {
             DgKind = "BasicDg"
         } else if (80.5 <= DgRandom && DgRandom < 83.5) {
-            DgKind = "GoldDg"
+            DgKind = "PoisonDg"
         } else if (83.5 <= DgRandom && DgRandom < 88.5) {
-            DgKind = "SpecialDg"
+            DgKind = "IceDg"
         } else if (88.5 <= DgRandom && DgRandom < 90.5) {
             DgKind = "ChocoDg"
         } else if (90.5 <= DgRandom && DgRandom < 92.5) {
-            DgKind = "PoisonDg"
+            DgKind = "TangerineDg"
         } else if (92.5 <= DgRandom && DgRandom < 95.5) {
-            DgKind = "EmeraldDg"
-        } else if (95.5 <= DgRandom && DgRandom < 98.5) {
-            DgKind = "DiamondDg"
-        } else if (98.5 <= DgRandom && DgRandom < 99.5) {
             DgKind = "GinsengDg"
+        } else if (95.5 <= DgRandom && DgRandom < 98.5) {
+            DgKind = "GoldDg"
+        } else if (98.5 <= DgRandom && DgRandom < 99.5) {
+            DgKind = "RainbowDg"
         } else if (99.5 <= DgRandom && DgRandom <= 100) {
-            DgKind = "CaviarDg"
+            DgKind = "DiamondDg"
         }
         return DgKind
-    }
-
-    function setDgLocation(DgNum: number) {
-        var Xrandom = Math.random()
-        Xrandom = Xrandom * 100
-        document.getElementById('DgContainer ' + DgNum.toString)!.style.left = Xrandom.toString() + "%";
     }
 
     return (
         <div className="Game">
             <h1 id="startTimer">{Number((sec).toFixed(0))}</h1>
-            <h1>{name}</h1>
             {DgArrayState.map((value, idx) => <Dg key={value + idx} kind={value} DgDict={DgDict} setDgDict={setDgDict} DgNum={idx}></Dg>)}
         </div >
     )

@@ -1,5 +1,115 @@
 .Home {
-    background: #fff5de;
+    .background {
+        position: absolute;
+        display: flex;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        background: #eed4be;
+        .sun {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            background: rgb(187, 89, 89);
+            z-index: -1;
+        }
+        .우측나무 {
+            position: absolute;
+            width: 10rem;
+            height: 10rem;
+            right: -5.5rem;
+            bottom: 20%;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            rotate: (-10deg);
+            animation-name: move;
+        }
+        .좌측나무 {
+            position: absolute;
+            width: 15rem;
+            height: 15rem;
+            left: -8rem;
+            bottom: 30%;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            rotate: (-10deg);
+            animation-name: move;
+        }
+        .우향구름 {
+            position: absolute;
+            width: 15rem;
+            height: 15rem;
+            left: 0%;
+            top: 7%;
+            transform: translateX(-100%);
+            animation-duration: 7s;
+            animation-iteration-count: infinite;
+            animation-name: goRight;
+            animation-timing-function: linear;
+        }
+        .좌향구름 {
+            position: absolute;
+            width: 7rem;
+            height: 7rem;
+            right: 0%;
+            top: 3%;
+            transform: translateX(100%);
+            animation-duration: 11s;
+            animation-iteration-count: infinite;
+            animation-name: goLeft;
+            animation-timing-function: linear;
+        }
+    }
+
+    @keyframes goRight {
+        from {
+            left: 0%;
+        }
+        to {
+            left: 200%;
+        }
+    }
+    @keyframes goLeft {
+        from {
+            right: 0%;
+        }
+        to {
+            right: 200%;
+        }
+    }
+
+    @keyframes move {
+        0% {
+            transform: rotate(-10deg);
+            
+        }
+        50% {
+            transform: rotate(10deg);
+            
+        }
+        100% {
+            transform: rotate(-10deg);
+            
+        }
+    }
+    @keyframes moveright {
+        0% {
+            transform: rotate(10deg);
+            
+        }
+        50% {
+            transform: rotate(-10deg);
+            
+        }
+        100% {
+            transform: rotate(10deg);
+            
+        }
+    }
+
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -9,7 +119,7 @@
             color: #fe7717;
             font-family: "SANJUGotgam";
             font-size: 3rem;
-            margin-top: 6rem;
+            margin-top: 3rem;
             margin-bottom: 1rem;
             text-align: center;
         }
@@ -19,12 +129,9 @@
             font-size: 2rem;
         }
         .떡국 {
-            width: 5rem;
-            height: 5rem;
-            font-size: 2rem;
-            background: #faa;
-            border-radius: 20%;
-            margin: 3rem;
+            width: 10rem;
+            height: auto;
+            margin: 1rem;
         }
         .nameInput {
             width: 70%;
@@ -32,10 +139,9 @@
             height: 5rem;
             input {
                 position: absolute;
-                margin-top: 0.75rem;
                 font-size: 2rem;
                 width: 100%;
-                height: 48px;
+                line-height: 5rem;
                 background: transparent;
                 font-family: "SDMiSaeng";
                 border: none;
@@ -50,7 +156,8 @@
                 }
             }
             img {
-                width: 100%;
+                width: auto;
+                height: 5rem;
                 position: absolute;
             }
         }
@@ -58,29 +165,33 @@
             width: 70%;
             position: relative;
             height: 5rem;
+            margin-bottom: 3rem;
             p {
+                margin: 0;
                 position: absolute;
-                margin-top: 1.25rem;
                 font-size: 2rem;
                 width: 100%;
-                height: 48px;
+                height: 5rem;
+                line-height: 5rem;
                 background: transparent;
                 font-family: "SDMiSaeng";
                 border: none;
                 color: #3a3a3a;
-                padding-left: 5rem;
+                padding-right: 2rem;
+                text-align: right;
                 &:focus {
                     outline: none;
                 }
             }
             img {
-                width: 100%;
+                width: auto;
+                height: 5rem;
                 position: absolute;
             }
-            &:active{
+            &:active {
                 transform: translateY(5px);
                 filter: opacity(60%);
-                img {   
+                img {
                     filter: opacity(60%);
                 }
             }

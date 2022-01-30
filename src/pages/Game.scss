@@ -3,6 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 100%;
     #startTimer {
         display: flex;
         font-size: 100px;
