@@ -1,4 +1,16 @@
 .Result{
     width: 100%;
     height: 100%;
+    .DgGallery{
+        width: 30rem;
+        height: 30rem;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        .img{
+            width: 100%;
+            height: 100%;
+            
+        }
+    }
 }

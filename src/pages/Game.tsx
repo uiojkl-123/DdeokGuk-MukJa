@@ -28,9 +28,19 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
     }, [])
 
 
-
+    interface Dictionary{
+        BasicDg: number,
+        GoldDg: number,
+        TangerineDg: number,
+        ChocoDg: number,
+        PoisonDg: number,
+        RainbowDg: number,
+        DiamondDg: number,
+        GinsengDg: number,
+        IceDg: number
+    }
     //떡국 사전
-    const [DgDict, setDgDict] = useState({
+    const [DgDict, setDgDict] = useState<Dictionary>({
         BasicDg: 0,
         GoldDg: 0,
         TangerineDg: 0,
