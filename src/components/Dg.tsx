@@ -25,7 +25,7 @@ const Dg: React.FC<Props> = ({ kind, DgDict, setDgDict, DgNum }) => {
     }, [waitBeforeShow]);
 
     function DgClick() {
-        document.getElementById('DgContainer ' + DgNum)!.className = "clicked";
+        document.getElementById('DgContainer ' + DgNum)!.style.display = "none";
         document.getElementById('DgContainer ' + DgNum + 'img')!.style.display = "none";
         switch (kind) {
             case 'BasicDg':

@@ -1,17 +1,20 @@
-import { IonButton, IonPage } from '@ionic/react';
 import './Home.scss';
-import { RouteComponentProps } from 'react-router';
+import { useHistory } from 'react-router';
 
-const Home: React.FC<RouteComponentProps> = ({ history }) => {
+interface HomeProps {
+  setName: any;
+}
+
+const Home: React.FC<HomeProps> = ( prop ) => {
+
+  const history = useHistory()
 
   function goGame() {
     let inputValue = (document.getElementById("name") as HTMLInputElement).value;
 
     if (inputValue) {
-      history.push({
-        pathname: "/game",
-        state: { name: inputValue }
-      })
+      prop.setName(inputValue)
+      history.push( "/game")
     } else {
       alert("닉네임을 입력해주세요.")
     }
