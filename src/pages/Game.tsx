@@ -1,19 +1,19 @@
-import { IonPage } from "@ionic/react";
-import React, { useEffect, useRef, useState } from "react";
-import { RouteComponentProps } from "react-router";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router";
 import "./Game.scss"
-import { useLocation } from "react-router";
 import Dg from "../components/Dg";
 
+interface DgGet {
+    DgDict: any,
+    setDgDict: any,
+    children?: ReactNode
+}
 
-const Game: React.FC<RouteComponentProps> = ({ history }) => {
+const Game: React.FC<DgGet> = ( prop ) => {
 
+    const history = useHistory();
 
     const stateTime = 10;
-
-    //history.push로 준 변수 받아오기
-    const location: any = useLocation();
-    const name = location.state.name;
 
     var DgArray: string[] = []
     const DgArrayLength = (stateTime) * 8
@@ -27,38 +27,11 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
         setDgArrayState(DgArray)
     }, [])
 
-
-    interface Dictionary{
-        BasicDg: number,
-        GoldDg: number,
-        TangerineDg: number,
-        ChocoDg: number,
-        PoisonDg: number,
-        RainbowDg: number,
-        DiamondDg: number,
-        GinsengDg: number,
-        IceDg: number
-    }
-    //떡국 사전
-    const [DgDict, setDgDict] = useState<Dictionary>({
-        BasicDg: 0,
-        GoldDg: 0,
-        TangerineDg: 0,
-        ChocoDg: 0,
-        PoisonDg: 0,
-        RainbowDg: 0,
-        DiamondDg: 0,
-        GinsengDg: 0,
-        IceDg: 0
-    });
-
     //결과 페이지로 넘어가기
     async function goResult() {
         setTimeout(() => {
-            history.push({
-                pathname: "/result",
-                state: { DgDict: DgDict, name: name } //떡국 사전, 사용자 이름 넘겨주기
-            });
+            prop.setDgDict()
+            history.push("/result");
         }, 125)
     }
 
@@ -89,7 +62,7 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
 
     if (sec == 1) {
         document.getElementById('startTimer')!.innerText = '끝!';
-        goResult()
+        setTimeout(() => goResult(), 1000)
     }
     //타이머 끝
 
@@ -123,10 +96,10 @@ const Game: React.FC<RouteComponentProps> = ({ history }) => {
 
     return (
         <div className="Game">
-            <h1 id="startTimer">{Number((sec).toFixed(0))}</h1>
-            {DgArrayState.map((value, idx) => <Dg key={value + idx} kind={value} DgDict={DgDict} setDgDict={setDgDict} DgNum={idx}></Dg>)}
+            <h1 id="startTimer">{Number((sec).toFixed(0)) - 1}</h1>
+            {DgArrayState.map((value, idx) => <Dg key={value + idx} kind={value} DgDict={prop.DgDict} setDgDict={prop.setDgDict} DgNum={idx}></Dg>)}
         </div >
     )
 }
 
-export default Game
+export default Game;
